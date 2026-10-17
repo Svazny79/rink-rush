@@ -5,758 +5,1043 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#100905">
-<meta name="description" content="RinkRush Hockey — mini sticks, hockey pucks, custom sticks and limited-edition Halloween bundles.">
+<meta name="description" content="RinkRush Hockey — mini sticks, hockey pucks, custom sticks and Halloween bundles.">
 <title>RinkRush Hockey | Own Your Mini Rink</title>
 
 <style>
 :root {
-  --bg:#090d14;
-  --panel:#111925;
-  --blue:#38bdf8;
-  --cyan:#67e8f9;
-  --white:#f4f8ff;
-  --muted:#9baabd;
-  --line:#243449;
-  --orange:#ff821b;
-  --orange-light:#ffbd69;
+  --bg: #090d14;
+  --panel: #111925;
+  --blue: #38bdf8;
+  --cyan: #67e8f9;
+  --white: #f4f8ff;
+  --muted: #9baabd;
+  --line: #243449;
+  --orange: #ff821b;
+  --orange-light: #ffbd69;
+
+  /* Match the background in your uploaded stick photos */
+  --photo-bg: #c9c5bb;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; scroll-padding-top:100px; }
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
 }
-button,input,select,textarea { font:inherit; }
-button { cursor:pointer; }
-a { color:inherit; }
-button:focus-visible,a:focus-visible,input:focus-visible,
-select:focus-visible,textarea:focus-visible {
-  outline:2px solid var(--cyan);
-  outline-offset:3px;
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
 }
+
+/* HEADER */
 
 header {
-  min-height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding:14px 7%;
-  background:rgba(9,13,20,.97);
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  z-index:20;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 7%;
+  background: rgba(9,13,20,.97);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
+
 .logo {
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:-1px;
-  white-space:nowrap;
-  text-decoration:none;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  white-space: nowrap;
+  text-decoration: none;
 }
-.logo span { color:var(--blue); }
+
+.logo span { color: var(--blue); }
+
 nav {
-  display:flex;
-  align-items:center;
-  gap:19px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
 }
+
 nav a {
-  color:var(--muted);
-  font-size:12px;
-  font-weight:900;
-  text-decoration:none;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
 }
-nav a:hover { color:var(--cyan); }
-.cart-button,.primary {
-  border:0;
-  background:var(--blue);
-  color:#06111b;
-  font-weight:900;
-  padding:12px 17px;
-  border-radius:7px;
+
+nav a:hover { color: var(--cyan); }
+
+.cart-button,
+.primary {
+  border: 0;
+  background: var(--blue);
+  color: #06111b;
+  font-weight: 900;
+  padding: 12px 17px;
+  border-radius: 7px;
 }
-.cart-button { white-space:nowrap; }
-.primary,.secondary {
-  display:inline-block;
-  text-decoration:none;
-  padding:14px 19px;
-  border-radius:7px;
-  font-weight:900;
-  transition:transform .2s;
-}
-.primary:hover,.secondary:hover { transform:translateY(-2px); }
+
+.cart-button { white-space: nowrap; }
+
+.primary,
 .secondary {
-  color:var(--white);
-  background:transparent;
-  border:1px solid var(--blue);
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 19px;
+  border-radius: 7px;
+  font-weight: 900;
+  transition: transform .2s;
 }
 
-/* TOP HALLOWEEN FEATURE */
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-2px);
+}
+
+.secondary {
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--blue);
+}
+
+/* HALLOWEEN FEATURE AT THE TOP */
+
 .halloween-feature {
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  padding:44px 7%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 44px 7%;
   background:
-    radial-gradient(ellipse at 78% 48%,#a73b0b 0%,transparent 33%),
-    radial-gradient(ellipse at 15% 100%,#542006 0%,transparent 46%),
-    linear-gradient(115deg,#100807,#241007 47%,#100807);
-  border-bottom:1px solid #8e431d;
+    radial-gradient(ellipse at 78% 48%, #a73b0b 0%, transparent 33%),
+    radial-gradient(ellipse at 15% 100%, #542006 0%, transparent 46%),
+    linear-gradient(115deg, #100807, #241007 47%, #100807);
+  border-bottom: 1px solid #8e431d;
 }
-.halloween-feature::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  opacity:.4;
-  background-image:
-    radial-gradient(circle at 12% 23%,#ffad4b 1px,transparent 2px),
-    radial-gradient(circle at 77% 17%,#ff8c32 1px,transparent 2px),
-    radial-gradient(circle at 56% 78%,#ff9d40 1px,transparent 2px),
-    radial-gradient(circle at 91% 70%,#ffb36c 1px,transparent 2px);
-  background-size:95px 95px,130px 130px,110px 110px,150px 150px;
-}
-.halloween-layout {
-  max-width:1250px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:35px;
-  align-items:center;
-}
-.halloween-kicker {
-  display:inline-block;
-  padding:8px 12px;
-  border:1px solid #ff9c4a;
-  background:#ff821b1c;
-  color:var(--orange-light);
-  border-radius:30px;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-.halloween-feature h2 {
-  color:white;
-  font-size:clamp(37px,5vw,65px);
-  line-height:.98;
-  letter-spacing:-3px;
-  margin:18px 0 12px;
-}
-.halloween-feature h2 span { color:var(--orange); }
-.halloween-lead {
-  color:#e8c9b4;
-  line-height:1.75;
-  max-width:570px;
-  font-size:15px;
-}
-.halloween-deals {
-  list-style:none;
-  padding:0;
-  margin:25px 0;
-  display:grid;
-  gap:13px;
-}
-.halloween-deals li {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#fce7d5;
-  font-size:14px;
-  line-height:1.5;
-}
-.deal-icon {
-  width:35px;
-  height:35px;
-  display:grid;
-  place-items:center;
-  border-radius:9px;
-  flex-shrink:0;
-  background:#ff821b20;
-  border:1px solid #ff821b55;
-  font-size:18px;
-}
-.deal-copy strong { color:white; display:block; }
-.deal-copy small { color:#dfb49b; display:block; margin-top:3px; }
-.halloween-price-row {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:25px 0 20px;
-}
-.halloween-price {
-  font-size:39px;
-  font-weight:900;
-  color:var(--orange-light);
-  letter-spacing:-1px;
-}
-.halloween-was {
-  color:#bfa99b;
-  text-decoration:line-through;
-  font-size:17px;
-}
-.save-badge {
-  background:#ff821b;
-  color:#291004;
-  padding:8px 11px;
-  border-radius:6px;
-  font-size:12px;
-  font-weight:900;
-}
-.halloween-cta {
-  background:var(--orange);
-  color:#210d02;
-  border:0;
-  padding:16px 22px;
-  border-radius:8px;
-  font-weight:900;
-  box-shadow:0 6px 25px #ff821b30;
-}
-.halloween-cta:hover { background:#ffad54; }
-.halloween-fineprint {
-  font-size:11px;
-  color:#c6a38d;
-  line-height:1.6;
-  margin-top:13px;
-  max-width:460px;
-}
-.halloween-art {
-  min-height:400px;
-  position:relative;
-  display:grid;
-  place-items:center;
-  isolation:isolate;
-}
-.halloween-art::before {
-  content:"";
-  position:absolute;
-  width:75%;
-  aspect-ratio:1;
-  background:radial-gradient(circle,#ff7a182e,transparent 70%);
-  z-index:-1;
-}
-.halloween-sticks {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  width:100%;
-}
-.halloween-sticks img {
-  width:68%;
-  max-height:355px;
-  object-fit:contain;
-  filter:drop-shadow(0 18px 23px #000b);
-  transform:rotate(-8deg);
-}
-.halloween-puck {
-  position:absolute;
-  bottom:28px;
-  right:3%;
-  width:115px;
-  height:38px;
-  border-radius:50%;
-  background:linear-gradient(180deg,#444,#080808 42%,#171717);
-  border:3px solid #555;
-  box-shadow:0 15px 25px #0009,0 0 20px #ff821b35;
-  transform:rotate(-12deg);
-}
-.halloween-puck::after {
-  content:"RINKRUSH";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#ff8b24;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-.halloween-bat {
-  position:absolute;
-  font-size:38px;
-  filter:drop-shadow(0 5px 12px #0008);
-}
-.bat-one { top:13%; right:12%; transform:rotate(15deg); }
-.bat-two { bottom:17%; left:4%; font-size:25px; transform:rotate(-20deg); }
 
-section { padding:65px 8%; }
+.halloween-feature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .4;
+  background-image:
+    radial-gradient(circle at 12% 23%, #ffad4b 1px, transparent 2px),
+    radial-gradient(circle at 77% 17%, #ff8c32 1px, transparent 2px),
+    radial-gradient(circle at 56% 78%, #ff9d40 1px, transparent 2px),
+    radial-gradient(circle at 91% 70%, #ffb36c 1px, transparent 2px);
+  background-size: 95px 95px, 130px 130px, 110px 110px, 150px 150px;
+}
+
+.halloween-layout {
+  max-width: 1250px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.halloween-kicker {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ff9c4a;
+  background: #ff821b1c;
+  color: var(--orange-light);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.halloween-feature h2 {
+  color: white;
+  font-size: clamp(37px, 5vw, 65px);
+  line-height: .98;
+  letter-spacing: -3px;
+  margin: 18px 0 12px;
+}
+
+.halloween-feature h2 span { color: var(--orange); }
+
+.halloween-lead {
+  color: #e8c9b4;
+  line-height: 1.75;
+  max-width: 570px;
+  font-size: 15px;
+}
+
+.halloween-deals {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  display: grid;
+  gap: 13px;
+}
+
+.halloween-deals li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fce7d5;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.deal-icon {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  flex-shrink: 0;
+  background: #ff821b20;
+  border: 1px solid #ff821b55;
+  font-size: 18px;
+}
+
+.deal-copy strong {
+  color: white;
+  display: block;
+}
+
+.deal-copy small {
+  color: #dfb49b;
+  display: block;
+  margin-top: 3px;
+}
+
+.halloween-price-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 25px 0 20px;
+}
+
+.halloween-price {
+  font-size: 39px;
+  font-weight: 900;
+  color: var(--orange-light);
+  letter-spacing: -1px;
+}
+
+.halloween-was {
+  color: #bfa99b;
+  text-decoration: line-through;
+  font-size: 17px;
+}
+
+.save-badge {
+  background: #ff821b;
+  color: #291004;
+  padding: 8px 11px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.halloween-cta {
+  background: var(--orange);
+  color: #210d02;
+  border: 0;
+  padding: 16px 22px;
+  border-radius: 8px;
+  font-weight: 900;
+  box-shadow: 0 6px 25px #ff821b30;
+}
+
+.halloween-cta:hover { background: #ffad54; }
+
+.halloween-fineprint {
+  font-size: 11px;
+  color: #c6a38d;
+  line-height: 1.6;
+  margin-top: 13px;
+  max-width: 460px;
+}
+
+/*
+  The Halloween background stays orange, but the stick sits in a
+  separate beige photo panel to match the uploaded picture.
+*/
+
+.halloween-art {
+  min-height: 400px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.halloween-art::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #ff7a182e, transparent 70%);
+  z-index: -1;
+}
+
+.halloween-sticks {
+  width: 82%;
+  min-height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--photo-bg);
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px #0005;
+}
+
+.halloween-sticks img {
+  display: block;
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+  padding: 0;
+  background: var(--photo-bg);
+}
+
+.halloween-puck {
+  position: absolute;
+  bottom: 16px;
+  right: 0;
+  width: 115px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #444, #080808 42%, #171717);
+  border: 3px solid #555;
+  box-shadow: 0 15px 25px #0009, 0 0 20px #ff821b35;
+  transform: rotate(-12deg);
+}
+
+.halloween-puck::after {
+  content: "RINKRUSH";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ff8b24;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.halloween-bat {
+  position: absolute;
+  font-size: 38px;
+  filter: drop-shadow(0 5px 12px #0008);
+  z-index: 2;
+}
+
+.bat-one { top: 5%; right: 6%; transform: rotate(15deg); }
+.bat-two { bottom: 12%; left: 1%; font-size: 25px; transform: rotate(-20deg); }
+
+/* GENERAL SECTIONS */
+
+section { padding: 65px 8%; }
+
 .eyebrow {
-  color:var(--cyan);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:3px;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
 }
+
 h1 {
-  font-size:clamp(43px,6.4vw,78px);
-  line-height:.98;
-  margin:18px 0;
-  letter-spacing:-4px;
+  font-size: clamp(43px, 6.4vw, 78px);
+  line-height: .98;
+  margin: 18px 0;
+  letter-spacing: -4px;
 }
-h1 span { color:var(--blue); }
+
+h1 span { color: var(--blue); }
+
 h2.section-title {
-  font-size:clamp(28px,4vw,40px);
-  margin:8px 0;
-  letter-spacing:-1.5px;
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 8px 0;
+  letter-spacing: -1.5px;
 }
+
 .section-heading {
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:20px;
-  margin-bottom:28px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
 }
-.section-heading p { color:var(--muted); margin-bottom:0; }
+
+.section-heading p { color: var(--muted); margin-bottom: 0; }
+
+/* MAIN HERO */
 
 .hero {
-  min-height:470px;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  align-items:center;
-  gap:35px;
-  padding:65px 8%;
+  min-height: 470px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 35px;
+  padding: 65px 8%;
   background:
-    radial-gradient(ellipse at 80% 50%,#12314b 0%,transparent 48%),
-    linear-gradient(120deg,#090d14,#101a29);
-  overflow:hidden;
+    radial-gradient(ellipse at 80% 50%, #12314b 0%, transparent 48%),
+    linear-gradient(120deg, #090d14, #101a29);
+  overflow: hidden;
 }
+
 .hero p {
-  color:var(--muted);
-  font-size:17px;
-  line-height:1.7;
-  max-width:470px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 470px;
 }
+
 .hero-actions {
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:28px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
 }
+
+/* Match the actual photo background, not the surrounding hero background */
+
 .hero-art {
-  min-height:310px;
-  display:grid;
-  place-items:center;
-  position:relative;
-  border-radius:15px;
-  background:radial-gradient(ellipse,#233b51,#101925 70%);
+  min-height: 310px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--photo-bg);
 }
+
 .hero-art img {
-  width:100%;
-  height:310px;
-  object-fit:contain;
-  padding:12px;
-  filter:drop-shadow(0 18px 23px #0009);
+  display: block;
+  width: 100%;
+  height: 310px;
+  object-fit: contain;
+  padding: 0;
+  background: var(--photo-bg);
+  filter: drop-shadow(0 8px 12px #0003);
 }
+
 .hero-badge {
-  position:absolute;
-  bottom:12px;
-  right:12px;
-  background:var(--blue);
-  color:#06111b;
-  padding:12px 15px;
-  border-radius:8px;
-  font-weight:900;
-  font-size:12px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: var(--blue);
+  color: #06111b;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 12px;
 }
+
+/* BENEFITS */
 
 .perks {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  padding:25px 8%;
-  border-bottom:1px solid var(--line);
-  border-top:1px solid var(--line);
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 25px 8%;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  gap: 20px;
 }
-.perk { text-align:center; font-size:13px; font-weight:900; }
+
+.perk {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+}
+
 .perk span {
-  display:block;
-  color:var(--muted);
-  font-weight:normal;
-  margin-top:6px;
+  display: block;
+  color: var(--muted);
+  font-weight: normal;
+  margin-top: 6px;
 }
+
+/* SHOP FILTERS */
+
 .filters {
-  display:flex;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-bottom:28px;
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
 }
+
 .filter {
-  padding:10px 15px;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:var(--panel);
-  color:var(--muted);
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--panel);
+  color: var(--muted);
 }
-.filter.active,.filter:hover {
-  color:var(--blue);
-  border-color:var(--blue);
+
+.filter.active,
+.filter:hover {
+  color: var(--blue);
+  border-color: var(--blue);
 }
+
+/* PRODUCTS */
+
 .products {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
+
 .product {
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:12px;
-  overflow:hidden;
-  transition:transform .2s,border-color .2s;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
 }
-.product:hover { transform:translateY(-4px); border-color:#3b82a5; }
+
+.product:hover {
+  transform: translateY(-4px);
+  border-color: #3b82a5;
+}
+
+/*
+  ALL STICK PHOTO CONTAINERS USE THE SAME BACKGROUND AS THE
+  ORIGINAL UPLOADED STICK PHOTOS.
+*/
+
 .product-image {
-  height:225px;
-  background:#ddd9d0;
-  display:grid;
-  place-items:center;
-  position:relative;
-  overflow:hidden;
+  height: 225px;
+  background: var(--photo-bg);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
 }
+
 .product-image img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:8px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0;
+  background: var(--photo-bg);
 }
-.product-info { padding:18px; }
-.product-info h3 { margin:0 0 8px; font-size:18px; }
+
+.product-info { padding: 18px; }
+
+.product-info h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
 .product-info p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-  min-height:40px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 40px;
 }
+
 .product-bottom {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
-.price { font-size:20px; font-weight:900; }
+
+.price { font-size: 20px; font-weight: 900; }
+
 .add {
-  background:var(--blue);
-  color:#06111b;
-  border:0;
-  padding:10px 12px;
-  border-radius:6px;
-  font-weight:900;
+  background: var(--blue);
+  color: #06111b;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 900;
 }
+
 .tag {
-  display:inline-block;
-  color:var(--cyan);
-  font-size:10px;
-  letter-spacing:1px;
-  font-weight:900;
-  margin-bottom:10px;
+  display: inline-block;
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  margin-bottom: 10px;
 }
+
+/* CLASSIC STICK COLOR SELECTOR */
 
 .mini-color-label {
-  color:var(--muted);
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:1px;
-  margin:8px 0;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 8px 0;
 }
-.mini-colors { display:flex; gap:9px; margin:12px 0 17px; }
+
+.mini-colors {
+  display: flex;
+  gap: 9px;
+  margin: 12px 0 17px;
+}
+
 .mini-color {
-  width:23px;
-  height:23px;
-  border:2px solid #ffffff99;
-  outline:1px solid transparent;
-  border-radius:50%;
-  padding:0;
+  width: 23px;
+  height: 23px;
+  border: 2px solid #ffffff99;
+  outline: 1px solid transparent;
+  border-radius: 50%;
+  padding: 0;
 }
-.mini-color.active { outline:2px solid var(--blue); outline-offset:3px; }
+
+.mini-color.active {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* HALLOWEEN SHOP CARD
+   The stick photo area stays beige; orange styling remains around it. */
 
 .product--halloween {
-  border-color:#994114;
-  background:#160e0b;
-  box-shadow:0 0 20px #ff6a1615;
+  border-color: #994114;
+  background: #160e0b;
+  box-shadow: 0 0 20px #ff6a1615;
 }
+
+.product--halloween:hover {
+  border-color: #ff8a24;
+  box-shadow: 0 0 28px #ff6a1640;
+}
+
 .product--halloween .product-image {
-  background:
-    radial-gradient(circle at 50% 45%,#ffb03b 0%,#e95b11 32%,transparent 65%),
-    linear-gradient(135deg,#21100d,#64220d 48%,#120b0b);
+  background: var(--photo-bg);
 }
-.product--halloween .product-image::before {
-  content:"🦇";
-  position:absolute;
-  top:12px;
-  left:15px;
-  font-size:29px;
-  z-index:2;
-}
-.product--halloween .product-image::after {
-  content:"🎃";
-  position:absolute;
-  bottom:8px;
-  right:13px;
-  font-size:40px;
-  z-index:2;
-}
+
 .product--halloween .product-image img {
-  mix-blend-mode:multiply;
-  filter:contrast(1.12) saturate(1.2);
+  background: var(--photo-bg);
+  mix-blend-mode: normal;
+  filter: none;
 }
+
 .halloween-tag {
-  display:inline-block;
-  background:var(--orange);
-  color:#210d02;
-  padding:7px 9px;
-  border-radius:4px;
-  font-size:10px;
-  letter-spacing:1px;
-  font-weight:900;
-  margin-bottom:10px;
+  display: inline-block;
+  background: var(--orange);
+  color: #210d02;
+  padding: 7px 9px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  margin-bottom: 10px;
 }
-.product--halloween .product-info h3 { color:var(--orange-light); }
-.product--halloween .add { background:var(--orange); color:#210d02; }
-.product--halloween .halloween-description { color:#e6bda5; }
+
+.product--halloween .product-info h3 { color: var(--orange-light); }
+
+.product--halloween .add {
+  background: var(--orange);
+  color: #210d02;
+}
+
+.product--halloween .halloween-description { color: #e6bda5; }
+
+/* PUCK PRODUCT */
+
+.puck-wrap {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--photo-bg);
+}
 
 .puck-stage {
-  width:145px;
-  height:145px;
-  display:grid;
-  place-items:center;
+  width: 145px;
+  height: 145px;
+  display: grid;
+  place-items: center;
 }
+
 .puck {
-  width:115px;
-  height:39px;
-  border-radius:50%;
-  position:relative;
-  background:linear-gradient(180deg,#4d4d4d 0%,#111 40%,#202020 100%);
-  border:3px solid #555;
-  box-shadow:0 24px 27px #0007;
-  transform:rotate(-10deg);
+  width: 115px;
+  height: 39px;
+  border-radius: 50%;
+  position: relative;
+  background: linear-gradient(180deg, #4d4d4d 0%, #111 40%, #202020 100%);
+  border: 3px solid #555;
+  box-shadow: 0 24px 27px #0007;
+  transform: rotate(-10deg);
 }
+
 .puck::after {
-  content:"RINKRUSH";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#b4dff1;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
+  content: "RINKRUSH";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #b4dff1;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
-.puck-wrap {
-  width:100%;
-  height:100%;
-  display:grid;
-  place-items:center;
-  background:radial-gradient(ellipse,#e2e3e1,#babcb9);
-}
+
+/* CUSTOMIZER
+   The preview panel and the photo itself use the same beige-gray color. */
+
 .customizer {
-  background:linear-gradient(120deg,#101a29,#0d2435);
-  border:1px solid #294459;
-  border-radius:15px;
-  padding:30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:35px;
-  align-items:center;
+  background: linear-gradient(120deg, #101a29, #0d2435);
+  border: 1px solid #294459;
+  border-radius: 15px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
 }
+
 .stick-preview {
-  min-height:300px;
-  display:grid;
-  place-items:center;
-  background:#e1ddd3;
-  border-radius:12px;
-  overflow:hidden;
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  background: var(--photo-bg);
+  border-radius: 12px;
+  overflow: hidden;
 }
+
 .stick-preview img {
-  width:100%;
-  max-height:300px;
-  object-fit:contain;
-  transition:filter .2s;
+  display: block;
+  width: 100%;
+  height: 300px;
+  max-height: 300px;
+  object-fit: contain;
+  padding: 0;
+  background: var(--photo-bg);
+  transition: filter .2s;
 }
-.field { margin:20px 0; }
+
+.field { margin: 20px 0; }
+
 .field label {
-  display:block;
-  margin-bottom:9px;
-  font-size:13px;
-  font-weight:900;
+  display: block;
+  margin-bottom: 9px;
+  font-size: 13px;
+  font-weight: 900;
 }
-.field select,.field input,.field textarea {
-  width:100%;
-  padding:12px;
-  background:#090f18;
-  color:var(--white);
-  border:1px solid var(--line);
-  border-radius:7px;
+
+.field select,
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px;
+  background: #090f18;
+  color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 7px;
 }
-.field textarea { min-height:100px; resize:vertical; }
-.swatches { display:flex; gap:10px; flex-wrap:wrap; }
+
+.field textarea { min-height: 100px; resize: vertical; }
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .swatch {
-  width:34px;
-  height:34px;
-  border:2px solid #ffffff55;
-  border-radius:50%;
-  padding:0;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #ffffff55;
+  border-radius: 50%;
+  padding: 0;
 }
-.swatch.active { outline:2px solid var(--blue); outline-offset:3px; }
+
+.swatch.active {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* ABOUT */
 
 .about-banner {
-  padding:30px;
-  border:1px solid var(--line);
-  background:linear-gradient(120deg,#111925,#102b40);
-  border-radius:14px;
-  margin-bottom:22px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, #111925, #102b40);
+  border-radius: 14px;
+  margin-bottom: 22px;
 }
+
 .about-banner p {
-  max-width:850px;
-  color:var(--muted);
-  line-height:1.9;
+  max-width: 850px;
+  color: var(--muted);
+  line-height: 1.9;
 }
-.about-values,.features {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+
+.about-values,
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
-.value-card,.feature {
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:22px;
-  border-radius:10px;
+
+.value-card,
+.feature {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  border-radius: 10px;
 }
-.value-card p,.feature p {
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
+
+.value-card p,
+.feature p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
 }
-.symbol { font-size:28px; }
+
+.symbol { font-size: 28px; }
+
+/* CONTACT */
 
 .contact-grid {
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:35px;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 35px;
 }
+
 .contact-card {
-  padding:25px;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:12px;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
 }
+
 .contact-email {
-  color:var(--cyan);
-  font-weight:bold;
-  overflow-wrap:anywhere;
+  color: var(--cyan);
+  font-weight: bold;
+  overflow-wrap: anywhere;
 }
-.contact-details p { color:var(--muted); line-height:1.8; }
-.notice { color:var(--cyan); font-size:13px; line-height:1.6; }
+
+.contact-details p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.notice {
+  color: var(--cyan);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* FOOTER */
 
 footer {
-  padding:30px 8%;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:12px;
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
+  padding: 30px 8%;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
 }
-.footer-links { display:flex; gap:15px; }
-.footer-links a { color:var(--muted); text-decoration:none; }
-.footer-links a:hover { color:var(--cyan); }
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--cyan); }
+
+/* SHOPPING CART */
 
 .drawer-backdrop {
-  position:fixed;
-  inset:0;
-  z-index:40;
-  background:#000a;
-  display:none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #000a;
+  display: none;
 }
-.drawer-backdrop.open { display:block; }
+
+.drawer-backdrop.open { display: block; }
+
 .drawer {
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:min(420px,100%);
-  overflow-y:auto;
-  background:#0d1521;
-  border-left:1px solid var(--line);
-  padding:25px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(420px, 100%);
+  overflow-y: auto;
+  background: #0d1521;
+  border-left: 1px solid var(--line);
+  padding: 25px;
 }
+
 .drawer-head {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 }
+
 .close {
-  background:transparent;
-  color:var(--white);
-  border:1px solid var(--line);
-  padding:8px 12px;
-  border-radius:6px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: 6px;
 }
+
 .cart-item {
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:17px 0;
-  border-bottom:1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
 }
-.cart-item small { display:block; color:var(--muted); margin-top:5px; }
+
+.cart-item small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
 .qty {
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex-wrap:wrap;
-  margin-top:9px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 9px;
 }
+
 .qty button {
-  background:#1b2a3d;
-  color:white;
-  border:0;
-  padding:5px 10px;
-  border-radius:4px;
+  background: #1b2a3d;
+  color: white;
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
+
 .cart-total {
-  display:flex;
-  justify-content:space-between;
-  font-size:20px;
-  font-weight:900;
-  margin:25px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 25px 0;
 }
-.empty { color:var(--muted); padding:20px 0; }
+
+.empty { color: var(--muted); padding: 20px 0; }
+
+/* RESPONSIVE LAYOUT */
 
 @media(max-width:900px) {
-  header { padding:14px 5%; }
-  nav { gap:11px; }
-  nav a { font-size:10px; }
-  .halloween-layout { grid-template-columns:1fr; gap:12px; }
-  .halloween-art { min-height:300px; }
-  .halloween-sticks img { max-height:280px; }
-  .hero { grid-template-columns:1fr; padding:50px 6%; }
-  section { padding:50px 6%; }
-  .products { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-  .customizer,.contact-grid { grid-template-columns:1fr; }
+  header { padding: 14px 5%; }
+  nav { gap: 11px; }
+  nav a { font-size: 10px; }
+
+  .halloween-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .halloween-art { min-height: 350px; }
+
+  .halloween-sticks {
+    width: min(82%, 390px);
+    min-height: 300px;
+  }
+
+  .halloween-sticks img { height: 300px; }
+
+  .hero { grid-template-columns: 1fr; padding: 50px 6%; }
+  section { padding: 50px 6%; }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .customizer,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
 @media(max-width:560px) {
-  header { flex-wrap:wrap; gap:12px; }
-  .logo { font-size:19px; }
-  nav { width:100%; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-  nav a { font-size:10px; }
-  .cart-button { padding:9px 10px; font-size:12px; }
-  .halloween-feature { padding:35px 6%; }
-  .halloween-feature h2 { letter-spacing:-2px; }
-  .halloween-art { min-height:230px; }
-  .halloween-sticks img { max-height:225px; }
-  .halloween-puck { width:85px; height:30px; }
-  h1 { letter-spacing:-2px; }
-  .products { grid-template-columns:1fr; }
-  .product-image { height:250px; }
-  .perks { padding:22px 5%; gap:9px; }
-  .perk { font-size:10px; }
-  .about-values,.features { grid-template-columns:1fr; }
-  .section-heading { align-items:flex-start; flex-direction:column; }
-  .customizer { padding:18px; }
+  header { flex-wrap: wrap; gap: 12px; }
+  .logo { font-size: 19px; }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  nav a { font-size: 10px; }
+  .cart-button { padding: 9px 10px; font-size: 12px; }
+
+  .halloween-feature { padding: 35px 6%; }
+  .halloween-feature h2 { letter-spacing: -2px; }
+  .halloween-art { min-height: 270px; }
+
+  .halloween-sticks {
+    width: 82%;
+    min-height: 235px;
+  }
+
+  .halloween-sticks img { height: 235px; }
+
+  .halloween-puck { width: 85px; height: 30px; }
+
+  h1 { letter-spacing: -2px; }
+
+  .products { grid-template-columns: 1fr; }
+
+  .product-image { height: 250px; }
+
+  .perks {
+    padding: 22px 5%;
+    gap: 9px;
+  }
+
+  .perk { font-size: 10px; }
+
+  .about-values,
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .customizer { padding: 18px; }
 }
 </style>
 </head>
@@ -765,6 +1050,7 @@ footer {
 
 <header>
   <a href="#home" class="logo">RINK<span>RUSH</span></a>
+
   <nav aria-label="Main navigation">
     <a href="#home">HOME</a>
     <a href="#shop">SHOP</a>
@@ -779,15 +1065,17 @@ footer {
 
 <main>
 
-<!-- HALLOWEEN BUNDLE: FEATURED AT THE VERY TOP -->
+<!-- HALLOWEEN BUNDLE FEATURE -->
 <section class="halloween-feature" id="halloween">
   <div class="halloween-layout">
+
     <div>
       <div class="halloween-kicker">🎃 THE HALLOWEEN DROP</div>
       <h2>TRICK OR <span>RINK!</span></h2>
+
       <p class="halloween-lead">
         Gear up for spooky-season shootouts with the RinkRush Halloween
-        Bundle. One orange Classic stick, one hockey puck, and a
+        Bundle. Get an orange Classic mini stick, a hockey puck, and a
         limited-edition Halloween look.
       </p>
 
@@ -799,6 +1087,7 @@ footer {
             <small>Regular price: $7.00</small>
           </span>
         </li>
+
         <li>
           <span class="deal-icon">⚫</span>
           <span class="deal-copy">
@@ -806,11 +1095,12 @@ footer {
             <small>Regular price: $4.00</small>
           </span>
         </li>
+
         <li>
           <span class="deal-icon">🎃</span>
           <span class="deal-copy">
-            <strong>Limited Halloween Bundle</strong>
-            <small>Spooky orange theme included</small>
+            <strong>Halloween Bundle Deal</strong>
+            <small>Spooky theme and a special bundle price</small>
           </span>
         </li>
       </ul>
@@ -826,20 +1116,24 @@ footer {
       </button>
 
       <p class="halloween-fineprint">
-        Bundle deal: $9 instead of $11 when purchased separately.
-        Demo pricing shown; real inventory and checkout are not connected.
+        Bundle price shown for this website demo. Inventory and real
+        checkout are not connected.
       </p>
     </div>
 
     <div class="halloween-art">
       <span class="halloween-bat bat-one">🦇</span>
       <span class="halloween-bat bat-two">🕸️</span>
+
       <div class="halloween-sticks">
         <img src="Orange stick.png"
-          alt="Orange RinkRush mini stick for the Halloween Bundle">
+          alt="Orange RinkRush mini stick"
+          onerror="this.alt='Orange stick image not found';">
       </div>
+
       <div class="halloween-puck" aria-label="Hockey puck"></div>
     </div>
+
   </div>
 </section>
 
@@ -848,10 +1142,12 @@ footer {
   <div>
     <div class="eyebrow">YOUR GAME. YOUR GEAR.</div>
     <h1>OWN YOUR<br><span>MINI RINK.</span></h1>
+
     <p>
       Bring the competition home. Discover mini hockey sticks,
       hockey pucks, and custom gear for your next basement championship.
     </p>
+
     <div class="hero-actions">
       <a class="primary" href="#shop">SHOP THE GEAR ↗</a>
       <a class="secondary" href="#customize">BUILD YOUR STICK</a>
@@ -859,19 +1155,25 @@ footer {
   </div>
 
   <div class="hero-art">
-    <img src="Blue stick.png" alt="Blue RinkRush Classic mini stick">
+    <img src="Blue stick.png"
+      alt="Blue RinkRush Classic mini hockey stick"
+      onerror="this.alt='Blue stick image not found';">
     <div class="hero-badge">BUILT FOR THE BATTLE.</div>
   </div>
 </section>
 
+<!-- BENEFITS -->
 <div class="perks">
-  <div class="perk">🏒 MINI STICK SPECIALISTS
+  <div class="perk">
+    🏒 MINI STICK SPECIALISTS
     <span>Gear for your home rink</span>
   </div>
-  <div class="perk">🎨 MAKE IT YOURS
+  <div class="perk">
+    🎨 MAKE IT YOURS
     <span>Pick your stick color</span>
   </div>
-  <div class="perk">🥅 EVERY GAME COUNTS
+  <div class="perk">
+    🥅 EVERY GAME COUNTS
     <span>Bring on the competition</span>
   </div>
 </div>
@@ -897,19 +1199,22 @@ footer {
   <div class="products" id="productGrid"></div>
 </section>
 
-<!-- CUSTOMIZER -->
+<!-- STICK CUSTOMIZER -->
 <section id="customize">
   <div class="eyebrow">DESIGN YOUR OWN</div>
   <h2 class="section-title">Your Stick. Your Colors.</h2>
+
   <p style="color:var(--muted);line-height:1.7;margin-bottom:25px">
-    Select one of the six Classic stick colors, choose your shooting
+    Choose one of the six Classic stick colors, select your shooting
     hand, and add a custom name or number.
   </p>
 
   <div class="customizer">
+
     <div class="stick-preview">
-      <img id="stickPreview" src="Blue stick.png"
-        alt="Blue RinkRush Classic mini stick preview">
+      <img id="stickPreview"
+        src="Blue stick.png"
+        alt="Blue RinkRush Classic stick preview">
     </div>
 
     <div>
@@ -929,19 +1234,23 @@ footer {
 
       <div class="field">
         <label for="customName">CUSTOM NAME OR NUMBER (OPTIONAL)</label>
-        <input id="customName" maxlength="24" placeholder="e.g. RINKRUSH #79">
+        <input id="customName" maxlength="24"
+          placeholder="e.g. RINKRUSH #79">
       </div>
 
       <p style="font-size:12px;color:var(--muted);line-height:1.6">
-        Your selected stick image will change when you choose a color.
-        Confirm customization options before accepting real orders.
+        The image changes when you choose a different color. Actual
+        stick customization options need to be confirmed before
+        real orders are accepted.
       </p>
 
       <button class="primary" onclick="addCustomStick()">
         ADD CUSTOM STICK — $7.00
       </button>
+
       <p id="customMessage" class="notice" aria-live="polite"></p>
     </div>
+
   </div>
 </section>
 
@@ -952,12 +1261,14 @@ footer {
 
   <div class="about-banner">
     <h3>Big Game. Mini Rink.</h3>
+
     <p>
       RinkRush Hockey is all about the fun and competition of mini
       hockey. From games in the basement to tournaments with friends,
       our goal is to make it easy to gear up, customize your setup,
       and bring your own style to every game.
     </p>
+
     <p>
       Pick your gear, build your lineup, and make every shot count.
       Look out for seasonal drops like our Halloween Bundle.
@@ -970,15 +1281,17 @@ footer {
       <h3>Made for Mini Hockey</h3>
       <p>Mini sticks and hockey pucks for your home rink.</p>
     </div>
+
     <div class="value-card">
       <div class="symbol">🎨</div>
       <h3>Your Style, Your Rules</h3>
-      <p>Choose your stick color and customize your design.</p>
+      <p>Choose your stick color and personalize your design.</p>
     </div>
+
     <div class="value-card">
       <div class="symbol">🎃</div>
       <h3>Seasonal Drops</h3>
-      <p>Discover limited-edition themes and special bundle deals.</p>
+      <p>Discover special bundles and limited-edition themes.</p>
     </div>
   </div>
 </section>
@@ -987,6 +1300,7 @@ footer {
 <section id="contact">
   <div class="eyebrow">WE'RE HERE TO HELP</div>
   <h2 class="section-title">Contact RinkRush.</h2>
+
   <p style="color:var(--muted);line-height:1.8;max-width:650px">
     Have a question about a stick, puck, custom design, or bundle?
     Send us a message.
@@ -996,6 +1310,7 @@ footer {
     <div class="contact-details">
       <h3>Let's Talk Hockey.</h3>
       <p>Questions, feedback, or team-order ideas? Get in touch.</p>
+
       <p>
         <strong>Email us</strong><br>
         <a class="contact-email"
@@ -1008,13 +1323,16 @@ footer {
     <form class="contact-card" id="contactForm">
       <div class="field">
         <label for="contactName">YOUR NAME</label>
-        <input id="contactName" required maxlength="100" placeholder="Your name">
+        <input id="contactName" required maxlength="100"
+          placeholder="Your name">
       </div>
+
       <div class="field">
         <label for="contactEmail">YOUR EMAIL</label>
         <input id="contactEmail" type="email" required maxlength="200"
           placeholder="you@example.com">
       </div>
+
       <div class="field">
         <label for="contactSubject">SUBJECT</label>
         <select id="contactSubject">
@@ -1026,50 +1344,61 @@ footer {
           <option>Feedback</option>
         </select>
       </div>
+
       <div class="field">
         <label for="contactMessage">MESSAGE</label>
         <textarea id="contactMessage" required maxlength="3000"
           placeholder="Tell us what you need..."></textarea>
       </div>
+
       <button class="primary" type="submit">PREPARE EMAIL ↗</button>
       <p id="contactStatus" class="notice" aria-live="polite"></p>
     </form>
   </div>
 </section>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div>
     <div class="logo">RINK<span>RUSH</span></div>
     <p>Own Your Mini Rink.</p>
   </div>
+
   <div class="footer-links">
     <a href="#shop">Shop</a>
     <a href="#customize">Customize</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
+
   <div>© <span id="year"></span> RinkRush Hockey.</div>
 </footer>
 
-<!-- SHOPPING BAG -->
+<!-- CART DRAWER -->
 <div class="drawer-backdrop" id="cartBackdrop" onclick="backdropClose(event)">
   <aside class="drawer" aria-label="Shopping cart">
     <div class="drawer-head">
       <h2>Your Bag</h2>
       <button class="close" onclick="closeCart()">✕ Close</button>
     </div>
+
     <div id="cartItems"></div>
+
     <div class="cart-total">
       <span>Total</span>
       <span id="cartTotal">$0.00</span>
     </div>
+
     <p class="notice">
       Demo cart only. Payments and real order processing are not connected.
     </p>
+
     <button class="primary" style="width:100%" onclick="demoCheckout()">
       CONTINUE TO CHECKOUT
     </button>
+
     <p id="checkoutMessage" class="notice" aria-live="polite"></p>
   </aside>
 </div>
@@ -1078,12 +1407,12 @@ footer {
 const CONTACT_EMAIL = "31stvazn@dextersouthfield.org";
 
 const stickColors = [
-  {name:"Blue",   file:"Blue stick.png",   hex:"#1829ed"},
-  {name:"Black",  file:"Black stick.png",  hex:"#151515"},
-  {name:"Green",  file:"Green stick.png",  hex:"#10ad25"},
-  {name:"Orange", file:"Orange stick.png", hex:"#ff9800"},
-  {name:"Pink",   file:"Pink stick.png",   hex:"#f000ec"},
-  {name:"Purple", file:"Purple stick.png", hex:"#8b149b"}
+  { name:"Blue",   file:"Blue stick.png",   hex:"#1829ed" },
+  { name:"Black",  file:"Black stick.png",  hex:"#151515" },
+  { name:"Green",  file:"Green stick.png",  hex:"#10ad25" },
+  { name:"Orange", file:"Orange stick.png", hex:"#ff9800" },
+  { name:"Pink",   file:"Pink stick.png",   hex:"#f000ec" },
+  { name:"Purple", file:"Purple stick.png", hex:"#8b149b" }
 ];
 
 const products = [
@@ -1129,7 +1458,7 @@ const products = [
     name:"Mini Hockey Starter Set",
     category:"accessories",
     price:15,
-    desc:"A starter set concept for your mini-hockey lineup.",
+    desc:"A starter-set concept for your mini-hockey lineup.",
     image:"Green stick.png",
     tag:"STARTER SET"
   },
@@ -1180,7 +1509,9 @@ function renderVisual(product) {
   if (product.visual === "puck") {
     return `
       <div class="puck-wrap" role="img" aria-label="Black hockey puck">
-        <div class="puck"></div>
+        <div class="puck-stage">
+          <div class="puck"></div>
+        </div>
       </div>
     `;
   }
@@ -1190,7 +1521,7 @@ function renderVisual(product) {
       src="${escapeHTML(productImage(product))}"
       alt="${escapeHTML(product.name)}"
       loading="lazy"
-      onerror="this.onerror=null;this.alt='Image not found. Check the filename.'">
+      onerror="this.onerror=null;this.alt='Image not found — check the filename';">
   `;
 }
 
@@ -1225,15 +1556,20 @@ function renderProducts() {
       <div class="product-image">
         ${renderVisual(product)}
       </div>
+
       <div class="product-info">
         ${product.halloween
           ? '<div class="halloween-tag">🎃 HALLOWEEN DEAL</div>'
           : `<div class="tag">${escapeHTML(product.tag)}</div>`}
+
         <h3>${escapeHTML(product.name)}</h3>
+
         <p class="${product.halloween ? "halloween-description" : ""}">
           ${escapeHTML(product.desc)}
         </p>
+
         ${product.colorSelectable ? classicSwatches() : ""}
+
         <div class="product-bottom">
           <span class="price">${money(product.price)}</span>
           <button class="add" onclick="addProduct(${product.id})">ADD +</button>
@@ -1243,24 +1579,26 @@ function renderProducts() {
   `).join("");
 }
 
-/* Product filter buttons */
+/* SHOP FILTERS */
 document.querySelectorAll(".filter").forEach(button => {
   button.addEventListener("click", () => {
     currentFilter = button.dataset.filter;
+
     document.querySelectorAll(".filter").forEach(item => {
       item.classList.toggle("active", item === button);
     });
+
     renderProducts();
   });
 });
 
-/* Change the Classic stick color in the shop */
+/* CLASSIC STICK COLOR SELECTOR */
 function selectClassicColor(name) {
   classicSelectedColor = name;
   renderProducts();
 }
 
-/* Custom stick color picker */
+/* CUSTOMIZER COLOR SELECTOR */
 function renderCustomSwatches() {
   document.getElementById("customSwatches").innerHTML =
     stickColors.map(color => `
@@ -1278,12 +1616,13 @@ function renderCustomSwatches() {
 
 function selectCustomColor(name) {
   customSelectedColor = name;
+
   const color = getStickColor(name);
   const preview = document.getElementById("stickPreview");
 
   preview.src = color.file;
   preview.alt = color.name + " RinkRush Classic mini stick";
-  preview.style.filter = `drop-shadow(0 0 12px ${color.hex}88)`;
+  preview.style.filter = "none";
 
   document.getElementById("selectedColorText").textContent =
     "Selected: " + color.name;
@@ -1309,7 +1648,7 @@ function addCustomStick() {
   openCart();
 }
 
-/* Add a product, keeping the selected Classic color */
+/* ADD SHOP PRODUCTS */
 function addProduct(id) {
   const product = products.find(item => item.id === id);
   if (!product) return;
@@ -1329,17 +1668,18 @@ function addProduct(id) {
   }
 }
 
-/* Top Halloween banner button */
+/* HALLOWEEN BUNDLE */
 function addHalloweenBundle() {
   addToCart(7, {
     name:"Halloween Bundle",
     color:"Orange",
     includes:"Orange Classic Mini Stick + RinkRush Hockey Puck"
   });
+
   openCart();
 }
 
-/* Cart */
+/* CART LOGIC */
 function addToCart(id, details = {}) {
   const product = products.find(item => item.id === id);
   if (!product) return;
@@ -1372,6 +1712,7 @@ function renderCart() {
   const total = cart.reduce((sum,item) =>
     sum + item.price * item.qty,0
   );
+
   document.getElementById("cartTotal").textContent = money(total);
 
   const container = document.getElementById("cartItems");
@@ -1387,35 +1728,47 @@ function renderCart() {
       <div>
         <strong>${escapeHTML(item.name)}</strong>
         <small>${money(item.price)} each</small>
+
         ${item.details.hand
           ? `<small>${escapeHTML(item.details.hand)} shot</small>`
           : ""}
+
         ${item.details.color
           ? `<small>Color: ${escapeHTML(item.details.color)}</small>`
           : ""}
+
         ${item.details.includes
-          ? `<small>Includes: orange stick + hockey puck</small>`
+          ? "<small>Includes: orange stick + hockey puck</small>"
           : ""}
+
         <div class="qty">
-          <button onclick="changeQty(${item.key},-1)" aria-label="Decrease quantity">−</button>
+          <button onclick="changeQty(${item.key},-1)"
+            aria-label="Decrease quantity">−</button>
+
           <span>${item.qty}</span>
-          <button onclick="changeQty(${item.key},1)" aria-label="Increase quantity">+</button>
+
+          <button onclick="changeQty(${item.key},1)"
+            aria-label="Increase quantity">+</button>
+
           <button onclick="removeItem(${item.key})">Remove</button>
         </div>
       </div>
+
       <strong>${money(item.price * item.qty)}</strong>
     </div>
   `).join("");
 }
 
-function changeQty(key,amount) {
+function changeQty(key, amount) {
   const item = cart.find(entry => entry.key === key);
   if (!item) return;
 
   item.qty += amount;
+
   if (item.qty <= 0) {
     cart = cart.filter(entry => entry.key !== key);
   }
+
   renderCart();
 }
 
@@ -1448,7 +1801,7 @@ function demoCheckout() {
     "Your demo bag is ready! Connect a secure payment provider and order-processing system before accepting real payments.";
 }
 
-/* Contact form opens an email draft addressed to you */
+/* CONTACT FORM */
 document.getElementById("contactForm").addEventListener("submit",event => {
   event.preventDefault();
 
@@ -1463,7 +1816,10 @@ document.getElementById("contactForm").addEventListener("submit",event => {
     return;
   }
 
-  const subject = encodeURIComponent("RinkRush Hockey — " + subjectChoice);
+  const subject = encodeURIComponent(
+    "RinkRush Hockey — " + subjectChoice
+  );
+
   const body = encodeURIComponent(
     "Name: " + name +
     "\nEmail: " + email +
@@ -1474,10 +1830,13 @@ document.getElementById("contactForm").addEventListener("submit",event => {
   document.getElementById("contactStatus").textContent =
     "Opening your email app. Press Send there to deliver your message.";
 
-  window.location.href = "mailto:" + CONTACT_EMAIL +
-    "?subject=" + subject + "&body=" + body;
+  window.location.href =
+    "mailto:" + CONTACT_EMAIL +
+    "?subject=" + subject +
+    "&body=" + body;
 }
 
+/* INITIALIZE */
 document.getElementById("year").textContent = new Date().getFullYear();
 
 renderCustomSwatches();
