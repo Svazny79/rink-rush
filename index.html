@@ -1,0 +1,1162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d14">
+<meta name="description" content="RinkRush Hockey — mini sticks, hockey balls, and custom mini hockey gear. Own your mini rink.">
+<title>RinkRush Hockey | Own Your Mini Rink</title>
+
+<style>
+:root {
+  --bg: #090d14;
+  --panel: #111925;
+  --blue: #38bdf8;
+  --cyan: #67e8f9;
+  --white: #f4f8ff;
+  --muted: #9baabd;
+  --line: #243449;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+
+header {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 7%;
+  background: rgba(9,13,20,.97);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.logo span { color: var(--blue); }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  transition: color .2s;
+}
+nav a:hover { color: var(--cyan); }
+
+.cart-button, .primary {
+  border: 0;
+  background: var(--blue);
+  color: #06111b;
+  font-weight: 900;
+  padding: 12px 17px;
+  border-radius: 7px;
+}
+.cart-button { white-space: nowrap; }
+
+.hero {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 35px;
+  padding: 65px 8%;
+  background:
+    radial-gradient(ellipse at 80% 50%, #12314b 0%, transparent 48%),
+    linear-gradient(120deg, #090d14, #101a29);
+  overflow: hidden;
+}
+.eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+h1 {
+  font-size: clamp(44px, 6.5vw, 78px);
+  line-height: .98;
+  margin: 18px 0;
+  letter-spacing: -4px;
+}
+h1 span { color: var(--blue); }
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 470px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.primary, .secondary {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 7px;
+  font-weight: 900;
+  transition: transform .2s, background .2s;
+}
+.primary:hover, .secondary:hover { transform: translateY(-2px); }
+.secondary {
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--blue);
+}
+.hero-art {
+  position: relative;
+  min-height: 310px;
+  display: grid;
+  place-items: center;
+}
+.hero-art img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 14px;
+  filter: drop-shadow(0 20px 30px #0009);
+  transform: rotate(-3deg);
+}
+.hero-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--blue);
+  color: #06111b;
+  padding: 13px 18px;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.perks {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 25px 8%;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  gap: 20px;
+}
+.perk {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+}
+.perk span {
+  display: block;
+  color: var(--muted);
+  font-weight: normal;
+  margin-top: 6px;
+}
+
+section { padding: 65px 8%; }
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+h2 {
+  font-size: clamp(28px,4vw,40px);
+  margin: 8px 0;
+  letter-spacing: -1.5px;
+}
+.section-heading p { color: var(--muted); margin-bottom: 0; }
+
+.filters {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.filter {
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--panel);
+  color: var(--muted);
+}
+.filter.active, .filter:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px;
+}
+.product {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.product:hover {
+  transform: translateY(-4px);
+  border-color: #3b82a5;
+}
+.product-image {
+  height: 210px;
+  background: radial-gradient(ellipse at center,#243d54,#111925 72%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 8px;
+}
+.product-info { padding: 18px; }
+.product-info h3 { margin: 0 0 8px; font-size: 18px; }
+.product-info p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 38px;
+}
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.price { font-size: 20px; font-weight: 900; }
+.add {
+  background: var(--blue);
+  color: #06111b;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 900;
+}
+.tag {
+  display: inline-block;
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.customizer {
+  background: linear-gradient(120deg,#101a29,#0d2435);
+  border: 1px solid #294459;
+  border-radius: 15px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+.stick-preview {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  background: #09111b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.stick-preview img {
+  width: 95%;
+  max-height: 280px;
+  object-fit: cover;
+  transition: filter .2s;
+}
+.field { margin: 20px 0; }
+.field label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 13px;
+  font-weight: 900;
+}
+.field select, .field input, .field textarea {
+  width: 100%;
+  padding: 12px;
+  background: #090f18;
+  color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.field textarea { min-height: 100px; resize: vertical; }
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.swatch {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff5;
+  border-radius: 50%;
+}
+.swatch.active {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+.feature {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+}
+.feature .symbol { font-size: 28px; }
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ABOUT SECTION */
+.about-banner {
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg,#111925,#102b40);
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+.about-banner p {
+  max-width: 850px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+.value-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  border-radius: 10px;
+}
+.value-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* CONTACT SECTION */
+.contact-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 35px;
+}
+.contact-card {
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.contact-email {
+  color: var(--cyan);
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+.contact-details p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+.notice {
+  color: var(--cyan);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+footer {
+  padding: 30px 8%;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.footer-links {
+  display: flex;
+  gap: 15px;
+}
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer-links a:hover { color: var(--cyan); }
+
+/* SHOPPING CART */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #000a;
+  display: none;
+}
+.drawer-backdrop.open { display: block; }
+.drawer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(420px,100%);
+  overflow-y: auto;
+  background: #0d1521;
+  border-left: 1px solid var(--line);
+  padding: 25px;
+}
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.close {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cart-item small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 9px;
+}
+.qty button {
+  background: #1b2a3d;
+  color: white;
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 25px 0;
+}
+.empty { color: var(--muted); padding: 20px 0; }
+
+@media(max-width:800px) {
+  header { padding: 14px 5%; gap: 12px; }
+  nav { gap: 13px; }
+  nav a { font-size: 11px; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 6%;
+  }
+  .hero-art { min-height: 220px; }
+  section { padding: 50px 6%; }
+  .products {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+  }
+  .product-image { height: 165px; }
+  .product-info { padding: 13px; }
+  .product-info h3 { font-size: 16px; }
+  .product-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .customizer, .contact-grid { grid-template-columns: 1fr; }
+  .features, .about-values { grid-template-columns: 1fr; }
+}
+@media(max-width:520px) {
+  .logo { font-size: 18px; }
+  header { flex-wrap: wrap; }
+  nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  nav a { display: inline; font-size: 10px; }
+  .cart-button { padding: 10px 11px; font-size: 12px; }
+  h1 { letter-spacing: -2px; }
+  .products { grid-template-columns: 1fr; }
+  .product-image { height: 220px; }
+  .perks { padding: 22px 5%; gap: 10px; }
+  .perk { font-size: 10px; }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .customizer { padding: 18px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a href="#home" class="logo">RINK<span>RUSH</span></a>
+
+  <nav aria-label="Main navigation">
+    <a href="#home">HOME</a>
+    <a href="#shop">SHOP</a>
+    <a href="#customize">CUSTOMIZE</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+    <button class="cart-button" onclick="openCart()">
+      BAG (<span id="bagCount">0</span>)
+    </button>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">YOUR GAME. YOUR GEAR.</div>
+    <h1>OWN YOUR<br><span>MINI RINK.</span></h1>
+    <p>
+      Bring the competition home. Discover mini hockey sticks,
+      game-ready balls, and custom gear for your next basement
+      championship.
+    </p>
+    <div class="hero-actions">
+      <a class="primary" href="#shop">SHOP THE GEAR ↗</a>
+      <a class="secondary" href="#customize">BUILD YOUR STICK</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <img
+      src="https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=900&q=85"
+      alt="Hockey action"
+      onerror="this.style.display='none'">
+    <div class="hero-badge">BUILT FOR THE BATTLE.</div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<div class="perks">
+  <div class="perk">
+    🏒 MINI STICK SPECIALISTS
+    <span>Gear for your home rink</span>
+  </div>
+  <div class="perk">
+    🎨 MAKE IT YOURS
+    <span>Explore your own colors</span>
+  </div>
+  <div class="perk">
+    🥅 EVERY GAME COUNTS
+    <span>Bring on the competition</span>
+  </div>
+</div>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="section-heading">
+    <div>
+      <div class="eyebrow">THE EQUIPMENT ROOM</div>
+      <h2>Shop the Gear.</h2>
+      <p>Get your lineup ready.</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">All Gear</button>
+    <button class="filter" data-filter="sticks">Mini Sticks</button>
+    <button class="filter" data-filter="balls">Balls</button>
+    <button class="filter" data-filter="accessories">Accessories</button>
+  </div>
+
+  <div class="products" id="productGrid"></div>
+</section>
+
+<!-- CUSTOMIZATION -->
+<section id="customize">
+  <div class="eyebrow">DESIGN YOUR OWN</div>
+  <h2>Your Stick. Your Colors.</h2>
+  <p style="color:var(--muted);line-height:1.7;margin-bottom:25px">
+    Pick a color, choose your shooting hand, and add a name or number
+    to your custom mini-stick design.
+  </p>
+
+  <div class="customizer">
+    <div class="stick-preview">
+      <img
+        id="stickPreview"
+        src="https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=700&q=85"
+        alt="Custom stick color preview">
+    </div>
+
+    <div>
+      <div class="field">
+        <label>STICK COLOR</label>
+        <div class="swatches">
+          <button type="button" class="swatch active"
+            aria-label="Blue" title="Blue"
+            style="background:#2585ff" data-color="#2585ff"></button>
+          <button type="button" class="swatch"
+            aria-label="Red" title="Red"
+            style="background:#ef4444" data-color="#ef4444"></button>
+          <button type="button" class="swatch"
+            aria-label="Green" title="Green"
+            style="background:#22c55e" data-color="#22c55e"></button>
+          <button type="button" class="swatch"
+            aria-label="Purple" title="Purple"
+            style="background:#a855f7" data-color="#a855f7"></button>
+          <button type="button" class="swatch"
+            aria-label="Orange" title="Orange"
+            style="background:#f97316" data-color="#f97316"></button>
+          <button type="button" class="swatch"
+            aria-label="Black" title="Black"
+            style="background:#111827" data-color="#111827"></button>
+          <button type="button" class="swatch"
+            aria-label="White" title="White"
+            style="background:#ffffff" data-color="#ffffff"></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="hand">SHOOTING HAND</label>
+        <select id="hand">
+          <option>Right</option>
+          <option>Left</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="customName">CUSTOM NAME OR NUMBER (OPTIONAL)</label>
+        <input id="customName" maxlength="24"
+          placeholder="e.g. RINKRUSH #79">
+      </div>
+
+      <p style="font-size:12px;color:var(--muted);line-height:1.6">
+        This is a design preview. Confirm available colors and printing
+        options before accepting real custom orders.
+      </p>
+
+      <button class="primary" onclick="addCustomStick()">
+        ADD CUSTOM STICK — $7.00
+      </button>
+      <p id="customMessage" class="notice" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="eyebrow">THE RINKRUSH STORY</div>
+  <h2>About RinkRush.</h2>
+
+  <div class="about-banner">
+    <h3>Big Game. Mini Rink.</h3>
+    <p>
+      RinkRush Hockey is built around the fun and competition of mini
+      hockey. From quick games in the basement to full-on tournaments
+      with friends, our goal is to make it easy to gear up, customize
+      your setup, and bring your own style to every game.
+    </p>
+    <p>
+      We believe mini hockey should be fun, competitive, and open to
+      everyone. Pick your gear, build your lineup, and make every
+      shot count.
+    </p>
+  </div>
+
+  <div class="about-values">
+    <div class="value-card">
+      <div class="symbol">🏒</div>
+      <h3>Made for Mini Hockey</h3>
+      <p>
+        A shop concept focused on mini sticks, hockey balls, and gear
+        for games at home.
+      </p>
+    </div>
+    <div class="value-card">
+      <div class="symbol">🎨</div>
+      <h3>Your Style, Your Rules</h3>
+      <p>
+        Explore colors and personalization ideas to make your equipment
+        stand out from the rest.
+      </p>
+    </div>
+    <div class="value-card">
+      <div class="symbol">⚡</div>
+      <h3>Competition Starts Here</h3>
+      <p>
+        Challenge friends, organize tournaments, and bring the energy
+        of hockey into your own mini rink.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow">WE'RE HERE TO HELP</div>
+  <h2>Contact RinkRush.</h2>
+  <p style="color:var(--muted);line-height:1.8;max-width:650px">
+    Have a question about our gear, a custom stick idea, or a team
+    order? Send us a message and tell us what's on your mind.
+  </p>
+
+  <div class="contact-grid">
+    <div class="contact-details">
+      <h3>Let's Talk Hockey.</h3>
+      <p>
+        Questions, feedback, or ideas for RinkRush? Get in touch using
+        the email address below.
+      </p>
+
+      <p>
+        <strong>Email</strong><br>
+        <a class="contact-email"
+           href="mailto:31stvazn@dextersouthfield.org">
+          31stvazn@dextersouthfield.org
+        </a>
+      </p>
+
+      <p>
+        We welcome questions about products, custom designs, and
+        potential team orders.
+      </p>
+    </div>
+
+    <form class="contact-card" id="contactForm">
+      <div class="field">
+        <label for="contactName">YOUR NAME</label>
+        <input id="contactName" name="name"
+          required maxlength="100" placeholder="Your name">
+      </div>
+
+      <div class="field">
+        <label for="contactEmail">YOUR EMAIL</label>
+        <input id="contactEmail" name="email"
+          type="email" required maxlength="200"
+          placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label for="contactSubject">SUBJECT</label>
+        <select id="contactSubject" name="subject">
+          <option>General Question</option>
+          <option>Product Question</option>
+          <option>Custom Stick</option>
+          <option>Team Order</option>
+          <option>Feedback</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="contactMessage">MESSAGE</label>
+        <textarea id="contactMessage" name="message"
+          required maxlength="3000"
+          placeholder="Tell us what you need..."></textarea>
+      </div>
+
+      <button class="primary" type="submit">SEND AN EMAIL ↗</button>
+      <p id="contactStatus" class="notice" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="logo">RINK<span>RUSH</span></div>
+    <p>Own Your Mini Rink.</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="#shop">Shop</a>
+    <a href="#customize">Customize</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div>
+    © <span id="year"></span> RinkRush Hockey.
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="drawer-backdrop" id="cartBackdrop"
+  onclick="backdropClose(event)">
+  <aside class="drawer" aria-label="Shopping cart">
+    <div class="drawer-head">
+      <h2>Your Bag</h2>
+      <button class="close" onclick="closeCart()">✕ Close</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+
+    <p class="notice">
+      This is a demo cart. No payment is collected and no order is
+      submitted.
+    </p>
+
+    <button class="primary" style="width:100%"
+      onclick="demoCheckout()">
+      CONTINUE TO CHECKOUT
+    </button>
+
+    <p id="checkoutMessage" class="notice" aria-live="polite"></p>
+  </aside>
+</div>
+
+<script>
+const CONTACT_EMAIL = "31stvazn@dextersouthfield.org";
+
+const products = [
+  {
+    id: 1,
+    name: "Classic Mini Stick",
+    category: "sticks",
+    price: 7,
+    desc: "Your go-to stick for everyday mini hockey.",
+    image: "https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=700&q=80",
+    tag: "THE CLASSIC"
+  },
+  {
+    id: 2,
+    name: "Pro Series Mini Stick",
+    category: "sticks",
+    price: 12,
+    desc: "A standout look for your next rivalry game.",
+    image: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?auto=format&fit=crop&w=700&q=80",
+    tag: "FAN FAVORITE"
+  },
+  {
+    id: 3,
+    name: "Color Pop Mini Stick",
+    category: "sticks",
+    price: 9,
+    desc: "Bring some color to the mini rink.",
+    image: "https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=700&q=80",
+    tag: "STAND OUT"
+  },
+  {
+    id: 4,
+    name: "Mini Hockey Ball",
+    category: "balls",
+    price: 5,
+    desc: "A simple essential for your next game.",
+    image: "https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=500&q=70",
+    tag: "GAME ESSENTIAL"
+  },
+  {
+    id: 5,
+    name: "Airless Practice Ball",
+    category: "balls",
+    price: 3,
+    desc: "A lightweight option for practice sessions.",
+    image: "https://images.unsplash.com/photo-1580748141549-71748dbe0e9b?auto=format&fit=crop&w=500&q=70",
+    tag: "PRACTICE"
+  },
+  {
+    id: 6,
+    name: "Mini Hockey Starter Set",
+    category: "accessories",
+    price: 15,
+    desc: "A starter bundle concept for your lineup.",
+    image: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?auto=format&fit=crop&w=700&q=80",
+    tag: "BUNDLE"
+  }
+];
+
+let cart = [];
+let currentFilter = "all";
+let selectedColor = "#2585ff";
+
+function money(amount) {
+  return "$" + amount.toFixed(2);
+}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+
+  const shown = products.filter(product =>
+    currentFilter === "all" || product.category === currentFilter
+  );
+
+  grid.innerHTML = shown.map(product => `
+    <article class="product">
+      <div class="product-image">
+        <img src="${product.image}"
+          alt="${product.name}" loading="lazy">
+      </div>
+
+      <div class="product-info">
+        <div class="tag">${product.tag}</div>
+        <h3>${product.name}</h3>
+        <p>${product.desc}</p>
+
+        <div class="product-bottom">
+          <span class="price">${money(product.price)}</span>
+          <button class="add" onclick="addToCart(${product.id})">
+            ADD +
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    currentFilter = button.dataset.filter;
+
+    document.querySelectorAll(".filter").forEach(filterButton => {
+      filterButton.classList.toggle("active", filterButton === button);
+    });
+
+    renderProducts();
+  });
+});
+
+function addToCart(id, details = {}) {
+  const product = products.find(item => item.id === id);
+  if (!product) return;
+
+  const key = id + JSON.stringify(details);
+  const existing = cart.find(item => item.key === key);
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      key,
+      id,
+      name: details.name || product.name,
+      price: product.price,
+      qty: 1,
+      details
+    });
+  }
+
+  renderCart();
+  document.getElementById("checkoutMessage").textContent = "";
+}
+
+function addCustomStick() {
+  const name = document.getElementById("customName").value.trim();
+  const hand = document.getElementById("hand").value;
+
+  addToCart(1, {
+    name: "Custom Mini Stick" + (name ? " — " + name : ""),
+    color: selectedColor,
+    hand,
+    customName: name
+  });
+
+  document.getElementById("customMessage").textContent =
+    "Your custom design has been added to the demo bag!";
+
+  openCart();
+}
+
+function renderCart() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("bagCount").textContent = count;
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.qty, 0
+  );
+
+  document.getElementById("cartTotal").textContent = money(total);
+
+  const container = document.getElementById("cartItems");
+
+  if (!cart.length) {
+    container.innerHTML =
+      '<p class="empty">Your bag is empty. Time to gear up!</p>';
+    return;
+  }
+
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div>
+        <strong>${escapeHTML(item.name)}</strong>
+        <small>${money(item.price)} each</small>
+
+        ${item.details.hand
+          ? `<small>${escapeHTML(item.details.hand)} shot</small>`
+          : ""}
+
+        ${item.details.color
+          ? `<small>Color: ${escapeHTML(item.details.color)}</small>`
+          : ""}
+
+        <div class="qty">
+          <button onclick="changeQty('${item.key}',-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.key}',1)">+</button>
+          <button onclick="removeItem('${item.key}')">Remove</button>
+        </div>
+      </div>
+
+      <strong>${money(item.price * item.qty)}</strong>
+    </div>
+  `).join("");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function changeQty(key, amount) {
+  const item = cart.find(entry => entry.key === key);
+  if (!item) return;
+
+  item.qty += amount;
+
+  if (item.qty <= 0) {
+    cart = cart.filter(entry => entry.key !== key);
+  }
+
+  renderCart();
+}
+
+function removeItem(key) {
+  cart = cart.filter(item => item.key !== key);
+  renderCart();
+}
+
+function openCart() {
+  document.getElementById("cartBackdrop").classList.add("open");
+}
+
+function closeCart() {
+  document.getElementById("cartBackdrop").classList.remove("open");
+}
+
+function backdropClose(event) {
+  if (event.target.id === "cartBackdrop") {
+    closeCart();
+  }
+}
+
+function demoCheckout() {
+  const message = document.getElementById("checkoutMessage");
+
+  if (!cart.length) {
+    message.textContent = "Add some gear to your bag first.";
+    return;
+  }
+
+  message.textContent =
+    "Your demo bag is ready! Online orders require a secure payment provider and order-processing setup.";
+}
+
+/* COLOR CUSTOMIZATION PREVIEW */
+document.querySelectorAll(".swatch").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedColor = button.dataset.color;
+
+    document.querySelectorAll(".swatch").forEach(swatch => {
+      swatch.classList.toggle("active", swatch === button);
+    });
+
+    document.getElementById("stickPreview").style.filter =
+      `drop-shadow(0 0 16px ${selectedColor}99)`;
+  });
+});
+
+/* CONTACT FORM
+   Opens the visitor's email app with a prepared message.
+   The visitor must press Send to deliver it.
+*/
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("contactName").value.trim();
+  const email = document.getElementById("contactEmail").value.trim();
+  const subjectChoice = document.getElementById("contactSubject").value;
+  const message = document.getElementById("contactMessage").value.trim();
+
+  if (!name || !email || !message) {
+    document.getElementById("contactStatus").textContent =
+      "Please complete all required fields.";
+    return;
+  }
+
+  const subject = encodeURIComponent(
+    "RinkRush Hockey — " + subjectChoice
+  );
+
+  const body = encodeURIComponent(
+    "Name: " + name +
+    "\nEmail: " + email +
+    "\nSubject: " + subjectChoice +
+    "\n\nMessage:\n" + message
+  );
+
+  document.getElementById("contactStatus").textContent =
+    "Your email app should open with the message ready to send.";
+
+  window.location.href =
+    "mailto:" + CONTACT_EMAIL +
+    "?subject=" + subject +
+    "&body=" + body;
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
